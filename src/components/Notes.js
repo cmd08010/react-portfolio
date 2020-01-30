@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 
-export default function Notes({ userId, API }) {
+export default function Notes({ userId, API, user }) {
   const [notes, setNotes] = useState([])
 
   function getNotes() {
@@ -10,6 +10,7 @@ export default function Notes({ userId, API }) {
       setNotes(notes.data)
     })
   }
+
   getNotes()
 
   if ("yes") {
@@ -18,7 +19,7 @@ export default function Notes({ userId, API }) {
         <div>
           <h1>Notes!</h1>
         </div>
-        {notes.length}
+        {user.fullName} has {notes.length} notes!
       </div>
     )
   } else {

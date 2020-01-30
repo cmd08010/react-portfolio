@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     fetchUser().then(user => {
       const userCopy = { ...user }
-      console.log(user)
+      // console.log(user)
       setUser(userCopy)
     })
   }, [clicker])
@@ -53,7 +53,7 @@ function App() {
         Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
-      <Notes userId={user.id} API={API} />
+      <Notes userId={user.id} API={API} user={user} />
     </div>
   )
 }
