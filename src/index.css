@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+img {
+  border-radius: 50%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(45, 45, 148, 0.192);
+  align-items: center;
+  padding: 1rem;
+}
+
+button {
+  height: 2rem;
+}
