@@ -3,6 +3,7 @@ import logo from "./logo.svg"
 import "./App.css"
 import axios from "axios"
 import Notes from "./components/Notes"
+import qs from "qs"
 const API = "https://acme-users-api-rev.herokuapp.com/api"
 
 const fetchUser = async () => {
@@ -46,6 +47,18 @@ function App() {
     })
   }, [clicker])
 
+  const getHash = () => {
+    return window.location.hash.slice(1)
+  }
+  const [params, setParams] = useState(qs.parse(getHash()))
+
+  useEffect(() => {
+    window.addEventListener("hashchange", () => {
+      setParams(qs.parse(getHash()))
+    })
+    setParams(qs.parse(getHash()))
+  }, [])
+
   return (
     <div className="App">
       <div className="header">
@@ -53,6 +66,7 @@ function App() {
         Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
+      {/* {params === undefined &&  */}
       <Notes userId={user.id} API={API} user={user} />
     </div>
   )
