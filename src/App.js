@@ -1,61 +1,61 @@
-import React, { useState, useEffect } from "react"
-import logo from "./logo.svg"
-import "./App.css"
-import axios from "axios"
-import Notes from "./components/Notes"
-const API = "https://acme-users-api-rev.herokuapp.com/api"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Notes from './components/Notes';
+import Vacations from './components/Vacations';
+import FollowingCompanies from './components/FollowingCompanies';
+const API = 'https://acme-users-api-rev.herokuapp.com/api';
 
 const fetchUser = async () => {
-  const storage = window.localStorage
-  const userId = storage.getItem("userId")
-  console.log("fetch user function running")
+  const storage = window.localStorage;
+  const userId = storage.getItem('userId');
   if (userId) {
-    console.log("if statement here")
     try {
-      console.log(userId)
-      return (await axios.get(`${API}/users/detail/${userId}`)).data
+      return (await axios.get(`${API}/users/detail/${userId}`)).data;
     } catch (ex) {
-      storage.removeItem("userId")
-      return fetchUser()
+      storage.removeItem('userId');
+      return fetchUser();
     }
   }
 
-  const user = (await axios.get(`${API}/users/random`)).data
+  const user = (await axios.get(`${API}/users/random`)).data;
 
-  storage.setItem("userId", user.id)
-  return user
-}
+  storage.setItem('userId', user.id);
+  return user;
+};
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
-  let [clicker, setClicker] = useState(0)
+  let [clicker, setClicker] = useState(0);
 
   const changeUser = () => {
-    clicker++
-    localStorage.clear()
-    setClicker(clicker)
-    fetchUser()
-  }
+    clicker++;
+    localStorage.clear();
+    setClicker(clicker);
+    fetchUser();
+  };
 
   useEffect(() => {
     fetchUser().then(user => {
-      const userCopy = { ...user }
-      console.log(user)
-      setUser(userCopy)
-    })
-  }, [clicker])
+      const userCopy = { ...user };
+      setUser(userCopy);
+    });
+  }, [clicker]);
 
   return (
     <div className="App">
       <div className="header">
-        <img src={user.avatar}></img>
+        <img src={user.avatar} alt="user-avatar"></img>
         Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
-      <Notes userId={user.id} API={API} />
+      <div className="components">
+        <Notes userId={user.id} API={API} />
+        <Vacations userId={user.id} API={API} />
+        <FollowingCompanies userId={user.id} API={API} />
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
