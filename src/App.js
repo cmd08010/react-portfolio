@@ -1,74 +1,56 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react"
-import logo from "./logo.svg"
-import "./App.css"
 import axios from "axios"
-import Notes from "./components/Notes"
 import qs from "qs"
-const API = "https://acme-users-api-rev.herokuapp.com/api"
-=======
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import qs from 'qs';
-import Home from './components/Home';
+import Home from "./components/Home"
 
-const API = 'https://acme-users-api-rev.herokuapp.com/api';
->>>>>>> master
+const API = "https://acme-users-api-rev.herokuapp.com/api"
 
 const getHash = () => {
-  return window.location.hash.slice(1);
-};
+  return window.location.hash.slice(1)
+}
 
 const fetchUser = async () => {
-  const storage = window.localStorage;
-  const userId = storage.getItem('userId');
+  const storage = window.localStorage
+  const userId = storage.getItem("userId")
   if (userId) {
     try {
-      return (await axios.get(`${API}/users/detail/${userId}`)).data;
+      return (await axios.get(`${API}/users/detail/${userId}`)).data
     } catch (ex) {
-      storage.removeItem('userId');
-      return fetchUser();
+      storage.removeItem("userId")
+      return fetchUser()
     }
   }
 
-  const user = (await axios.get(`${API}/users/random`)).data;
+  const user = (await axios.get(`${API}/users/random`)).data
 
-  storage.setItem('userId', user.id);
-  return user;
-};
+  storage.setItem("userId", user.id)
+  return user
+}
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({})
 
-  let [clicker, setClicker] = useState(0);
-  const [params, setParams] = useState(qs.parse(getHash()));
+  let [clicker, setClicker] = useState(0)
+  const [params, setParams] = useState(qs.parse(getHash()))
 
   const changeUser = () => {
-    clicker++;
-    localStorage.clear();
-    setClicker(clicker);
-    fetchUser();
-  };
+    clicker++
+    localStorage.clear()
+    setClicker(clicker)
+    fetchUser()
+  }
 
   useEffect(() => {
     fetchUser().then(user => {
-<<<<<<< HEAD
       const userCopy = { ...user }
       // console.log(user)
       setUser(userCopy)
     })
   }, [clicker])
-=======
-      const userCopy = { ...user };
-      setUser(userCopy);
-    });
-  }, [clicker]);
->>>>>>> master
 
   const getHash = () => {
     return window.location.hash.slice(1)
   }
-  const [params, setParams] = useState(qs.parse(getHash()))
 
   useEffect(() => {
     window.addEventListener("hashchange", () => {
@@ -77,13 +59,6 @@ function App() {
     setParams(qs.parse(getHash()))
   }, [])
 
-  useEffect(() => {
-    window.addEventListener('hashchange', () => {
-      setParams(qs.parse(getHash()));
-    });
-    setParams(qs.parse(getHash()));
-  }, []);
-
   return (
     <div className="App">
       <div className="header">
@@ -91,22 +66,10 @@ function App() {
         Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      {/* {params === undefined &&  */}
-      <Notes userId={user.id} API={API} user={user} />
-=======
-      <div className="components">
-        <Notes userId={user.id} API={API} />
-        <Vacations userId={user.id} API={API} />
-        <FollowingCompanies userId={user.id} API={API} />
-      </div>
->>>>>>> master
-=======
+
       <Home user={user} API={API} />
->>>>>>> master
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
