@@ -19,7 +19,7 @@ img {
 .header {
   display: flex;
   justify-content: space-evenly;
-  background-color: rgba(45, 45, 148, 0.192);
+  background-color: rgba(92, 92, 245, 0.192);
   align-items: center;
   padding: 1rem;
 }
@@ -28,6 +28,7 @@ button {
   height: 2rem;
 }
 
+<<<<<<< HEAD
 .notes {
   border-radius: 50%;
   border: 1px solid teal;
@@ -36,4 +37,20 @@ button {
   height: 150px;
   margin: 2rem;
   background-color: teal;
+=======
+.bubble {
+  border-radius: 50%;
+  background-color: rgba(92, 92, 245, 0.192);
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.components {
+  display: flex;
+>>>>>>> master
 }
