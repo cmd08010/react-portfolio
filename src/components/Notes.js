@@ -15,11 +15,11 @@ export default function Notes({ userId, API, user, params }) {
 
   if ("yes") {
     return (
-      <div className="notes">
+      <div className="notes bubble">
         <div>
           <h1>Notes!</h1>
         </div>
-        {user.fullName} has {notes.length} notes!
+        {/* {user.fullName} has {notes.length} notes! */}
       </div>
     )
   } else {

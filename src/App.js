@@ -43,14 +43,9 @@ function App() {
   useEffect(() => {
     fetchUser().then(user => {
       const userCopy = { ...user }
-      // console.log(user)
       setUser(userCopy)
     })
   }, [clicker])
-
-  const getHash = () => {
-    return window.location.hash.slice(1)
-  }
 
   useEffect(() => {
     window.addEventListener("hashchange", () => {
@@ -66,7 +61,6 @@ function App() {
         Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
-
       <Home user={user} API={API} />
     </div>
   )
