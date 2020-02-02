@@ -9,11 +9,15 @@ const API = "https://acme-users-api-rev.herokuapp.com/api"
 =======
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Notes from './components/Notes';
-import Vacations from './components/Vacations';
-import FollowingCompanies from './components/FollowingCompanies';
+import qs from 'qs';
+import Home from './components/Home';
+
 const API = 'https://acme-users-api-rev.herokuapp.com/api';
 >>>>>>> master
+
+const getHash = () => {
+  return window.location.hash.slice(1);
+};
 
 const fetchUser = async () => {
   const storage = window.localStorage;
@@ -37,6 +41,7 @@ function App() {
   const [user, setUser] = useState({});
 
   let [clicker, setClicker] = useState(0);
+  const [params, setParams] = useState(qs.parse(getHash()));
 
   const changeUser = () => {
     clicker++;
@@ -72,6 +77,13 @@ function App() {
     setParams(qs.parse(getHash()))
   }, [])
 
+  useEffect(() => {
+    window.addEventListener('hashchange', () => {
+      setParams(qs.parse(getHash()));
+    });
+    setParams(qs.parse(getHash()));
+  }, []);
+
   return (
     <div className="App">
       <div className="header">
@@ -79,6 +91,7 @@ function App() {
         Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
       {/* {params === undefined &&  */}
       <Notes userId={user.id} API={API} user={user} />
@@ -88,6 +101,9 @@ function App() {
         <Vacations userId={user.id} API={API} />
         <FollowingCompanies userId={user.id} API={API} />
       </div>
+>>>>>>> master
+=======
+      <Home user={user} API={API} />
 >>>>>>> master
     </div>
   );

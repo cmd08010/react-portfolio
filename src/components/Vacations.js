@@ -13,7 +13,9 @@ export default function Vacations(props) {
 
   return (
     <div className="vacations bubble">
-      <h3>Vacations</h3>
+      <a href={`#${qs.stringify({ view: 'vacationsdetail'})}`>
+        <h3>Vacations</h3>
+      </a>
       <p>You have {vacations.length} vacations.</p>
     </div>
   );
