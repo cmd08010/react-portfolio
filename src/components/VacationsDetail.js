@@ -1,7 +1,7 @@
-import React from 'React';
+import React from "React"
 
 function VacationsDetail() {
-  return null;
+  return <div>Hi</div>
 }
 
-export default VacationsDetail;
+export default VacationsDetail

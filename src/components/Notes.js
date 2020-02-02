@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import axios from "axios"
+import qs from "qs"
+import NotesDetails from "./NotesDetails"
 
 export default function Notes({ userId, API, user, params }) {
   const [notes, setNotes] = useState([])
@@ -10,31 +12,15 @@ export default function Notes({ userId, API, user, params }) {
       setNotes(notes.data)
     })
   }
-
   getNotes()
+  return (
+    <div className="notes bubble">
+      <a href={`#${qs.stringify({ view: "notesdetail" })}`}>Notes</a>
+      <p>
+        {user.fullName} has {notes.length} notes!
+      </p>
 
-  if ("yes") {
-    return (
-      <div className="notes bubble">
-        <div>
-          <h1>Notes!</h1>
-        </div>
-        {/* {user.fullName} has {notes.length} notes! */}
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        {notes.map((note, index) => {
-          return (
-            <div key={index}>
-              <h1>Note</h1>
-              <h3>{note.createdAt}</h3>
-              Summary: {note.text}
-            </div>
-          )
-        })}
-      </div>
-    )
-  }
+      {/* <NotesDetails notes={notes} /> */}
+    </div>
+  )
 }
