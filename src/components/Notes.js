@@ -5,22 +5,18 @@ import NotesDetails from "./NotesDetails"
 
 export default function Notes({ userId, API, user, params }) {
   const [notes, setNotes] = useState([])
+  //console.log(params)
 
-  function getNotes() {
-    axios.get(`${API}/users/${userId}/notes`).then(notes => {
-      // console.log(notes)
-      setNotes(notes.data)
-    })
-  }
-  getNotes()
+  axios.get(`${API}/users/${userId}/notes`).then(notes => {
+    setNotes(notes.data)
+  })
+
   return (
     <div className="notes bubble">
-      <a href={`#${qs.stringify({ view: "notesdetail" })}`}>Notes</a>
-      <p>
-        {user.fullName} has {notes.length} notes!
-      </p>
-
-      {/* <NotesDetails notes={notes} /> */}
+      <a href="#view=notes">Notes</a>
+      {/* // {console.log(params)} */}
+      <div>You have {notes.length} notes!</div>
+      {params.view === "notes" && <NotesDetails notes={notes} />}
     </div>
   )
 }

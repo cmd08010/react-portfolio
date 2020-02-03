@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import qs from "qs"
+import VacationsDetail from "./VacationsDetail"
 
 export default function Vacations(props) {
   const [vacations, setVacations] = useState([])
@@ -18,6 +19,7 @@ export default function Vacations(props) {
         <h3>Vacations</h3>
       </a>
       <p>You have {vacations.length} vacations.</p>
+      {/* <VacationsDetail vacations={vacations} /> */}
     </div>
   )
 }

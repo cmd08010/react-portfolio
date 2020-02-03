@@ -29,14 +29,17 @@ button {
 }
 
 .notes {
-  border-radius: 50%;
-  border: 1px solid teal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  width: 175px;
-  height: 150px;
-  margin: 2rem;
-  background-color: teal;
 }
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
 .bubble {
   border-radius: 50%;
   background-color: rgba(92, 92, 245, 0.192);

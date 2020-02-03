@@ -42,8 +42,7 @@ function App() {
 
   useEffect(() => {
     fetchUser().then(user => {
-      const userCopy = { ...user }
-      setUser(userCopy)
+      setUser(user)
     })
   }, [clicker])
 
@@ -51,17 +50,15 @@ function App() {
     window.addEventListener("hashchange", () => {
       setParams(qs.parse(getHash()))
     })
-    setParams(qs.parse(getHash()))
-  }, [])
-
+  })
   return (
     <div className="App">
       <div className="header">
         <img src={user.avatar} alt="user-avatar"></img>
-        Welcome {user.email}
+        Welcome {user.email}, {console.log(params)}
         <button onClick={changeUser}>Change User</button>
       </div>
-      <Home user={user} API={API} />
+      <Home user={user} API={API} params={params} />
     </div>
   )
 }
