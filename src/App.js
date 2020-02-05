@@ -55,7 +55,7 @@ function App() {
     <div className="App">
       <div className="header">
         <img src={user.avatar} alt="user-avatar"></img>
-        Welcome {user.email}, {console.log(params)}
+        Welcome {user.email}
         <button onClick={changeUser}>Change User</button>
       </div>
       <Home user={user} API={API} params={params} />

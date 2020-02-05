@@ -28,18 +28,6 @@ button {
   height: 2rem;
 }
 
-.notes {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-}
-
 .bubble {
   border-radius: 50%;
   background-color: rgba(92, 92, 245, 0.192);
@@ -54,4 +42,16 @@ button {
 
 .components {
   display: flex;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
 }
