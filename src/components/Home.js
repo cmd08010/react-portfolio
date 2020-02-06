@@ -6,9 +6,14 @@ import FollowingCompanies from "./FollowingCompanies"
 function Home({ user, API, params }) {
   return (
     <div className="components">
-      <Notes userId={user.id} API={API} user={user} params={params} />
-      <Vacations userId={user.id} API={API} />
-      <FollowingCompanies userId={user.id} API={API} />
+      <Notes API={API} user={user} params={params} />
+      <Vacations API={API} user={user} params={params} />
+      <FollowingCompanies
+        userId={user.id}
+        API={API}
+        user={user}
+        params={params}
+      />
     </div>
   )
 }
